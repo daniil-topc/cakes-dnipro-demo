@@ -88,7 +88,7 @@
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       min-height: 48px; padding: 12px 26px;
       border: 2px solid transparent; border-radius: var(--radius-pill);
-      font-weight: 700; font-size: 16px; text-decoration: none; cursor: pointer;
+      font-weight: 700; font-size: 16px; text-decoration: none; cursor: pointer; white-space: nowrap;
       transition: background-color .2s var(--ease), color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
     }
     .btn--primary { background: var(--berry); color: #fff; box-shadow: 0 8px 20px -8px rgba(158, 61, 91, .6); }
@@ -189,9 +189,7 @@
     .card__body { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px 20px; flex: 1; }
     .card__title { font-size: 25px; }
     .card__desc { color: var(--muted); font-size: 15px; }
-    .card__footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 14px; }
-    .card__price { font-weight: 700; font-size: 17px; color: var(--ink); white-space: nowrap; }
-    .card__price small { font-weight: 500; font-size: 14px; color: var(--muted); }
+    .card__footer { display: flex; margin-top: auto; padding-top: 14px; }
     @keyframes card-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 
     /* =========================================================
@@ -608,33 +606,33 @@
       `https://placehold.co/600x480/${bg}/${fg}?text=${encodeURIComponent(text)}&font=playfair-display`;
 
     const CATEGORIES = [
-      { id: 'kids', name: 'Дитячі', bg: 'F7DCE0', fg: '9E3D5B', unit: 'грн/кг', items: [
-        { name: 'Бджілка Minecraft', desc: 'Кубічна бджілка з гри — яскравий торт для юних геймерів', price: 700, photo: 'images/kids-minecraft-bee.jpg', pos: 'center 20%' },
-        { name: 'Капібари', desc: 'Карамельний крем і фігурки капібар ручної роботи', price: 680, photo: 'images/kids-capybara.jpg', pos: 'center 15%' },
-        { name: 'Ведмедик', desc: 'Рожево-блакитні хвилі, перлини та фігурка ведмедика', price: 680, photo: 'images/kids-teddy.jpg', pos: 'center 30%' },
-        { name: 'Пандочки', desc: 'Бамбуковий «паркан» з трубочок і фігурки панд', price: 700, photo: 'images/kids-pandas.jpg' },
+      { id: 'kids', name: 'Дитячі', bg: 'F7DCE0', fg: '9E3D5B', items: [
+        { name: 'Бджілка Minecraft', desc: 'Кубічна бджілка з гри — яскравий торт для юних геймерів', photo: 'images/kids-minecraft-bee.jpg', pos: 'center 20%' },
+        { name: 'Капібари', desc: 'Карамельний крем і фігурки капібар ручної роботи', photo: 'images/kids-capybara.jpg', pos: 'center 15%' },
+        { name: 'Ведмедик', desc: 'Рожево-блакитні хвилі, перлини та фігурка ведмедика', photo: 'images/kids-teddy.jpg', pos: 'center 30%' },
+        { name: 'Пандочки', desc: 'Бамбуковий «паркан» з трубочок і фігурки панд', photo: 'images/kids-pandas.jpg' },
       ]},
-      { id: 'wedding', name: 'Весільні', bg: 'F3E9E1', fg: '8A5A4A', unit: 'грн/кг', items: [
-        { name: 'Монограма', desc: 'Дворівневий торт з кремовими воланами та ініціалами пари', price: 800, photo: 'images/wedding-monogram.jpg' },
-        { name: 'Інжир та ягоди', desc: 'Білий крем, свіжий інжир, малина й лохина', price: 780, photo: 'images/wedding-figs.jpg' },
-        { name: 'Золоте сяйво', desc: 'Кремові борти та їстівні золоті блискітки', price: 750, photo: 'images/wedding-gold.jpg' },
-        { name: 'На річницю весілля', desc: 'Іменний топер з датою та живі троянди', price: 780, photo: 'images/wedding-anniversary.jpg', pos: 'center 30%' },
+      { id: 'wedding', name: 'Весільні', bg: 'F3E9E1', fg: '8A5A4A', items: [
+        { name: 'Монограма', desc: 'Дворівневий торт з кремовими воланами та ініціалами пари', photo: 'images/wedding-monogram.jpg' },
+        { name: 'Інжир та ягоди', desc: 'Білий крем, свіжий інжир, малина й лохина', photo: 'images/wedding-figs.jpg' },
+        { name: 'Золоте сяйво', desc: 'Кремові борти та їстівні золоті блискітки', photo: 'images/wedding-gold.jpg' },
+        { name: 'На річницю весілля', desc: 'Іменний топер з датою та живі троянди', photo: 'images/wedding-anniversary.jpg', pos: 'center 30%' },
       ]},
-      { id: 'bento', name: 'Бенто', bg: 'EFD6E0', fg: '7E2C46', unit: 'грн/шт', items: [
-        { name: 'Бенто-серце', desc: 'Рожеве серце з кремовим бортиком та іменним написом', price: 520, photo: 'images/bento-heart.jpg' },
-        { name: 'Бенто «Чорні банти»', desc: 'Білий крем, чорні сердечка та атласні стрічки', price: 480, photo: 'images/bento-black-bows.jpg' },
-        { name: 'Бенто «Червоні банти»', desc: 'Білосніжний торт з червоними бантами й сердечками', price: 480, photo: 'images/bento-red-bows.webp' },
-        { name: 'Бенто з квітами', desc: 'Кремові троянди та ваш напис — ідеально до 8 Березня', price: 490, photo: 'images/bento-flowers.webp' },
+      { id: 'bento', name: 'Бенто', bg: 'EFD6E0', fg: '7E2C46', items: [
+        { name: 'Бенто-серце', desc: 'Рожеве серце з кремовим бортиком та іменним написом', photo: 'images/bento-heart.jpg' },
+        { name: 'Бенто «Чорні банти»', desc: 'Білий крем, чорні сердечка та атласні стрічки', photo: 'images/bento-black-bows.jpg' },
+        { name: 'Бенто «Червоні банти»', desc: 'Білосніжний торт з червоними бантами й сердечками', photo: 'images/bento-red-bows.webp' },
+        { name: 'Бенто з квітами', desc: 'Кремові троянди та ваш напис — ідеально до 8 Березня', photo: 'images/bento-flowers.webp' },
       ]},
-      { id: 'cupcakes', name: 'Капкейки', bg: 'F6E2D6', fg: '9A4E3A', unit: 'грн/шт', items: [
-        { name: 'Ягідні капкейки', desc: 'Вершкова шапочка, свіжа полуниця та лохина', price: 85, photo: 'images/cupcakes-berries.jpg', pos: 'center 60%' },
-        { name: 'Капкейки з сердечками', desc: 'Яскравий крем, шоколадні сердечка та цукрові перлини', price: 80, photo: 'images/cupcakes-hearts.jpg' },
-        { name: 'Капкейки зі Стічем', desc: 'Фігурки з мастики за улюбленим мультфільмом', price: 95, photo: 'images/cupcakes-stitch.jpg' },
+      { id: 'cupcakes', name: 'Капкейки', bg: 'F6E2D6', fg: '9A4E3A', items: [
+        { name: 'Ягідні капкейки', desc: 'Вершкова шапочка, свіжа полуниця та лохина', photo: 'images/cupcakes-berries.jpg', pos: 'center 60%' },
+        { name: 'Капкейки з сердечками', desc: 'Яскравий крем, шоколадні сердечка та цукрові перлини', photo: 'images/cupcakes-hearts.jpg' },
+        { name: 'Капкейки зі Стічем', desc: 'Фігурки з мастики за улюбленим мультфільмом', photo: 'images/cupcakes-stitch.jpg' },
       ]},
-      { id: 'sets', name: 'Набори', bg: 'EADFE8', fg: '6F3D5E', unit: 'грн/набір', items: [
-        { name: 'Бенто + 6 капкейків', desc: 'Бенто з написом і капкейки з печивом в одній коробці', price: 1100, photo: 'images/set-bento-cupcakes.jpg' },
-        { name: 'Набір «Old but gold»', desc: 'Бенто й капкейки з малиною та цифрою — на ювілей', price: 950, photo: 'images/set-old-but-gold.jpg', pos: 'center 30%' },
-        { name: 'Набір з левеням', desc: 'Сонячне бенто з малюнком і капкейки з сердечками', price: 1050, photo: 'images/set-lion.jpg' },
+      { id: 'sets', name: 'Набори', bg: 'EADFE8', fg: '6F3D5E', items: [
+        { name: 'Бенто + 6 капкейків', desc: 'Бенто з написом і капкейки з печивом в одній коробці', photo: 'images/set-bento-cupcakes.jpg' },
+        { name: 'Набір «Old but gold»', desc: 'Бенто й капкейки з малиною та цифрою — на ювілей', photo: 'images/set-old-but-gold.jpg', pos: 'center 30%' },
+        { name: 'Набір з левеням', desc: 'Сонячне бенто з малюнком і капкейки з сердечками', photo: 'images/set-lion.jpg' },
       ]},
     ];
 
@@ -652,7 +650,6 @@
        ХЕЛПЕРЫ
        ========================================================= */
     const $ = (sel) => document.querySelector(sel);
-    const formatPrice = (n) => n.toLocaleString('uk-UA');
 
     /* =========================================================
        ШАПКА: тень при прокрутке
@@ -694,7 +691,6 @@
             <h3 class="card__title">${item.name}</h3>
             <p class="card__desc">${item.desc}</p>
             <div class="card__footer">
-              <p class="card__price">від ${formatPrice(item.price)} <small>${cat.unit}</small></p>
               <button type="button" class="btn btn--primary btn--sm" data-want="${item.name}">Хочу такий</button>
             </div>
           </div>
